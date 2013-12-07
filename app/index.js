@@ -24,7 +24,7 @@ var authenticate = function(req, res, next) {
         next();
     } else {
         res.setHeader('WWW-Authenticate', 'realm="My realm"');
-        res.send(401, { error: 'Not authenticated.' });
+        res.redirect('/login');
     }
 };
 
@@ -33,10 +33,21 @@ app.configure(function() {
     app.set('views', __dirname + '/views');
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.bodyParser());
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: '{my_session_secret}' }));
     app.use(app.router); //Enable error handling
     app.use(notFoundHandler); //If no routes match, this will be called
     app.use(errorHandler); //Express knows a method with 4 params, is for handling errors
 });
+
+app.get('/', function (req, res) {
+    res.redirect('/main');
+});
+app.get('/login', function (req, res) {
+    res.render('login');
+});
+app.post('/login', controller.login);
+app.get('/main', authenticate, controller.main);
 
 app.listen(process.env.PORT, process.env.IP);
 console.log('csrf-demo running...');
