@@ -19,6 +19,15 @@ var errorHandler = function(err, req, res, next) {
     res.render('error');
 };
 
+var authenticate = function(req, res, next) {
+    if (req.session.username != null) {
+        next();
+    } else {
+        res.setHeader('WWW-Authenticate', 'realm="My realm"');
+        res.send(401, { error: 'Not authenticated.' });
+    }
+};
+
 app.configure(function() {
     app.set('view engine', 'jade');
     app.set('views', __dirname + '/views');
