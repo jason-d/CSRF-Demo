@@ -41,13 +41,17 @@ app.configure(function() {
 });
 
 app.get('/', function (req, res) {
-    res.redirect('/main');
+    res.redirect('/vote');
 });
 app.get('/login', function (req, res) {
     res.render('login');
 });
 app.post('/login', controller.login);
-app.get('/main', authenticate, controller.main);
+app.get('/vote', authenticate, function (req, res) {
+    res.render('vote');
+});
+app.post('/vote', authenticate, controller.vote);
+app.get('/results', controller.results);
 
 app.listen(process.env.PORT, process.env.IP);
 console.log('csrf-demo running...');
