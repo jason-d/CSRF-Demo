@@ -31,7 +31,7 @@ var authenticate = function(req, res, next) {
 app.configure(function() {
     app.set('view engine', 'jade');
     app.set('views', __dirname + '/views');
-    app.use(express.static(path.join(__dirname, 'public')));
+    //app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(express.session({ secret: '{my_session_secret}' }));
