@@ -17,7 +17,7 @@ exports.login = function (req, res) {
     }
 };
 
-exports.vote = function (req, res) {
+var saveVote = function (req) {
     
     var now = new Date();
     var date = util.format('%d/%d/%d %d:%d:%d', now.getMonth() + 1, 
@@ -27,6 +27,20 @@ exports.vote = function (req, res) {
         req.body.vote);
     
     fs.appendFile(votesFilePath, text);
+};
+
+exports.vote = function (req, res) {
+    
+    saveVote(req);
+    
+    res.redirect('/results');
+};
+
+exports.voteSafe = function (req, res) {
+    
+    if (req.body.csrfToken == req.cookies.csrfToken) {
+        saveVote(req);
+    }
     
     res.redirect('/results');
 };

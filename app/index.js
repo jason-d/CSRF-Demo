@@ -32,7 +32,7 @@ app.configure(function() {
     app.set('view engine', 'jade');
     app.set('views', __dirname + '/views');
     //app.use(express.static(path.join(__dirname, 'public')));
-    app.use(express.bodyParser());
+    app.use(express.urlencoded());
     app.use(express.cookieParser());
     app.use(express.session({ secret: '{my_session_secret}' }));
     app.use(app.router); //Enable error handling
@@ -52,6 +52,14 @@ app.get('/vote', authenticate, function (req, res) {
 });
 app.post('/vote', authenticate, controller.vote);
 app.get('/results', controller.results);
+app.get('/vote-safe', authenticate, function (req, res) {
+    
+    var token = 'my-csrf-token-generated-randomly';
+    res.cookie('csrfToken', token, { secure: true });
+    
+    res.render('vote-safe', { csrfToken: token });
+});
+app.post('/vote-safe', authenticate, controller.voteSafe);
 
 app.listen(process.env.PORT, process.env.IP);
 console.log('csrf-demo running...');
