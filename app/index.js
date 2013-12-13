@@ -56,7 +56,7 @@ app.get('/results', controller.results);
 app.get('/vote-safe', authenticate, function (req, res) {
     
     var token = uuid.v4();
-    res.cookie('csrfToken', token, { secure: true });
+    res.cookie('csrfToken', token, { httpOnly: true });
     
     res.render('vote-safe', { csrfToken: token });
 });
