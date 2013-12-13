@@ -17,18 +17,6 @@ exports.login = function (req, res) {
     }
 };
 
-var saveVote = function (req) {
-    
-    var now = new Date();
-    var date = util.format('%d/%d/%d %d:%d:%d', now.getMonth() + 1, 
-        now.getDate(), now.getFullYear(), now.getHours() - 3, now.getMinutes(), 
-        now.getSeconds());
-    var text = util.format('%s\t%s\t%s\n', date, req.session.username, 
-        req.body.vote);
-    
-    fs.appendFile(votesFilePath, text);
-};
-
 exports.vote = function (req, res) {
     
     saveVote(req);
@@ -38,7 +26,7 @@ exports.vote = function (req, res) {
 
 exports.voteSafe = function (req, res) {
     
-    if (req.body.csrfToken == req.cookies.csrfToken) {
+    if (isCrsfTokenPresent(req) && isCrsfTokenValid(req)) {
         saveVote(req);
     }
     
@@ -76,4 +64,26 @@ exports.results = function (req, res) {
     
         res.render('results', viewModel);
     });
+};
+
+var saveVote = function (req) {
+    
+    var now = new Date();
+    var date = util.format('%d/%d/%d %d:%d:%d', now.getMonth() + 1, 
+        now.getDate(), now.getFullYear(), now.getHours() - 3, now.getMinutes(), 
+        now.getSeconds());
+    var text = util.format('%s\t%s\t%s\n', date, req.session.username, 
+        req.body.vote);
+    
+    fs.appendFile(votesFilePath, text);
+};
+
+var isCrsfTokenPresent = function (req) {
+    
+    return (req.body.csrfToken != null && req.body.csrfToken != null);
+};
+
+var isCrsfTokenValid = function (req) {
+    
+    return (req.body.csrfToken == req.cookies.csrfToken);
 };
