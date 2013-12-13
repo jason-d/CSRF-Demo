@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var controller = require('./controller.js');
+var uuid = require('node-uuid');
 
 var app = express();
 
@@ -54,7 +55,7 @@ app.post('/vote', authenticate, controller.vote);
 app.get('/results', controller.results);
 app.get('/vote-safe', authenticate, function (req, res) {
     
-    var token = 'my-csrf-token-generated-randomly';
+    var token = uuid.v4();
     res.cookie('csrfToken', token, { secure: true });
     
     res.render('vote-safe', { csrfToken: token });
