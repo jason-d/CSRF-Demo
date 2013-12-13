@@ -21,7 +21,7 @@ var saveVote = function (req) {
     
     var now = new Date();
     var date = util.format('%d/%d/%d %d:%d:%d', now.getMonth() + 1, 
-        now.getDate(), now.getFullYear(), now.getHours(), now.getMinutes(), 
+        now.getDate(), now.getFullYear(), now.getHours() - 3, now.getMinutes(), 
         now.getSeconds());
     var text = util.format('%s\t%s\t%s\n', date, req.session.username, 
         req.body.vote);
