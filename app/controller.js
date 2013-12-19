@@ -2,7 +2,6 @@ var fs = require('fs');
 var path = require('path');
 var util = require('util');
 var byline = require('byline');
-var something = 'Testing VS2013'
 
 var votesFilePath = path.join(__dirname, 'votes.txt');
 
