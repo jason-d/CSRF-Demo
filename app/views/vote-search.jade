@@ -1,0 +1,25 @@
+﻿extends layout
+
+block content
+	.container
+		.row
+			h1 Search Votes
+
+		.row.form-inline
+				.form-group.col-lg-4
+					input.form-control(id='username', type='text', placeholder='Username', value='#{username}' required)
+			
+				.form-group.col-lg-1
+					button.btn.btn-success.text-center(type='button', onclick='search()') Search
+
+		if (username != null && username != '')
+			.row
+				h3 You searched for 
+					b !{username}
+
+		script.
+			var search = function () {
+				var element = document.getElementById('username');
+
+				window.location = './vote-search?username=' + element.value;
+			};

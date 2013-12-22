@@ -39,6 +39,7 @@ app.configure(function() {
     app.use(app.router); //Enable error handling
     app.use(notFoundHandler); //If no routes match, this will be called
     app.use(errorHandler); //Express knows a method with 4 params, is for handling errors
+    app.locals.pretty = true;
 });
 
 app.get('/', function (req, res) {
@@ -61,6 +62,8 @@ app.get('/vote-safe', authenticate, function (req, res) {
     res.render('vote-safe', { csrfToken: token });
 });
 app.post('/vote-safe', authenticate, controller.voteSafe);
+app.get('/vote-search', controller.voteSearch);
+app.get('/vote-search-safe', controller.voteSearchSafe);
 
 app.listen(process.env.PORT, process.env.IP);
 console.log('csrf-demo running...');

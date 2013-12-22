@@ -66,6 +66,16 @@ exports.results = function (req, res) {
     });
 };
 
+exports.voteSearch = function (req, res) {
+    
+    searchVotes(req, res, 'vote-search');
+};
+
+exports.voteSearchSafe = function (req, res) {
+
+    searchVotes(req, res, 'vote-search-safe');
+};
+
 var saveVote = function (req) {
     
     var now = new Date();
@@ -86,4 +96,17 @@ var isCrsfTokenPresent = function (req) {
 var isCrsfTokenValid = function (req) {
     
     return (req.body.csrfToken == req.cookies.csrfToken);
+};
+
+var searchVotes = function(req, res, viewName) {
+
+    var results = {
+        username: ''
+    };
+    
+    if (req.query.username != null && req.query.username != '') {
+        results.username = req.query.username;
+    }
+
+    res.render(viewName, results);
 };
