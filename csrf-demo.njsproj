@@ -4,9 +4,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3b900686-74f3-4e47-be71-76e5febd7384}</ProjectGuid>
-    <ProjectHome>app\</ProjectHome>
-    <ProjectView>ShowAllFiles</ProjectView>
-    <StartupFile>index.js</StartupFile>
+    <ProjectHome>
+    </ProjectHome>
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartupFile>app\index.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
@@ -16,21 +17,30 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
-    <Content Include="views\vote-search-safe.jade" />
-    <Content Include="views\vote-search.jade" />
-    <Content Include="votes.txt" />
-    <Compile Include="controller.js" />
-    <Compile Include="index.js" />
-    <Content Include="views\error.jade" />
-    <Content Include="views\layout.jade" />
-    <Content Include="views\login.jade" />
-    <Content Include="views\notFound.jade" />
-    <Content Include="views\results.jade" />
-    <Content Include="views\vote-safe.jade" />
-    <Content Include="views\vote.jade" />
+    <Content Include="app\views\vote-search-safe.jade" />
+    <Content Include="app\views\vote-search.jade" />
+    <Content Include="app\votes.txt" />
+    <Compile Include="app\controller.js" />
+    <Compile Include="app\index.js" />
+    <Content Include="app\views\error.jade" />
+    <Content Include="app\views\layout.jade" />
+    <Content Include="app\views\login.jade" />
+    <Content Include="app\views\notFound.jade" />
+    <Content Include="app\views\results.jade" />
+    <Content Include="app\views\vote-safe.jade" />
+    <Content Include="app\views\vote.jade" />
+    <Content Include="exploits\html-exploit.html" />
+    <Content Include="exploits\javascript-exploit1.html" />
+    <Content Include="exploits\javascript-exploit2.html" />
+    <Content Include="LICENSE" />
+    <Content Include="package.json" />
+    <Content Include="Procfile" />
+    <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="views" />
+    <Folder Include="app\" />
+    <Folder Include="app\views" />
+    <Folder Include="exploits\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
