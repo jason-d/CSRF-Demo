@@ -29,9 +29,10 @@
     <Content Include="app\views\results.jade" />
     <Content Include="app\views\vote-safe.jade" />
     <Content Include="app\views\vote.jade" />
-    <Content Include="exploits\html-exploit.html" />
-    <Content Include="exploits\javascript-exploit1.html" />
-    <Content Include="exploits\javascript-exploit2.html" />
+    <Content Include="exploits\csrf-html-exploit.html" />
+    <Content Include="exploits\csrf-javascript-exploit1.html" />
+    <Content Include="exploits\csrf-javascript-exploit2.html" />
+    <Content Include="exploits\xss-exploits.txt" />
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="Procfile" />
