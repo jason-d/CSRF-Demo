@@ -99,14 +99,38 @@ var isCrsfTokenValid = function (req) {
 };
 
 var searchVotes = function(req, res, viewName) {
-
-    var results = {
-        username: ''
+        
+    var username = req.query.username || '';
+    var viewModel = {
+        username: username
     };
     
-    if (req.query.username != null && req.query.username != '') {
-        results.username = req.query.username;
-    }
+    if (username != '') {
 
-    res.render(viewName, results);
+        var stream = fs.createReadStream(votesFilePath);
+        stream = byline.createStream(stream);
+
+        var votes = [];
+    
+        stream.on('data', function (line) {
+            var fields = line.toString().split('\t');
+        
+            if (username == fields[1]) {
+                var vote = {
+                    date: fields[0],
+                    username: fields[1],
+                    vote: fields[2]
+                };
+                votes.push(vote);
+            }
+        });
+
+        stream.on('end', function () {
+            viewModel.votes = votes;
+    
+            res.render(viewName, viewModel);
+        });
+    } else {
+        res.render(viewName, viewModel);
+    }
 };
