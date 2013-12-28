@@ -18,6 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="app\public\css\site.css" />
     <Content Include="app\views\vote-search-safe.jade" />
     <Content Include="app\views\vote-search.jade" />
     <Content Include="app\votes.txt" />
@@ -41,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
+    <Folder Include="app\public\" />
+    <Folder Include="app\public\css\" />
     <Folder Include="app\views" />
     <Folder Include="exploits\" />
   </ItemGroup>
