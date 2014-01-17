@@ -33,6 +33,13 @@ exports.voteSafe = function (req, res) {
     res.redirect('/results');
 };
 
+exports.clearVotes = function (req, res) {
+
+	fs.truncate(votesFilePath, 0, function () {
+		res.send("Votes cleared.");
+	});
+};
+
 exports.results = function (req, res) {
     var stream = fs.createReadStream(votesFilePath);
     stream = byline.createStream(stream);

@@ -53,6 +53,7 @@ app.get('/vote', authenticate, function (req, res) {
     res.render('vote');
 });
 app.post('/vote', authenticate, controller.vote);
+app.get('/clear-votes', controller.clearVotes);
 app.get('/results', controller.results);
 app.get('/vote-safe', authenticate, function (req, res) {
     
