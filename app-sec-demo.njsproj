@@ -31,10 +31,6 @@
     <Content Include="app\views\results.jade" />
     <Content Include="app\views\vote-safe.jade" />
     <Content Include="app\views\vote.jade" />
-    <Content Include="exploits\csrf-html-exploit.html" />
-    <Content Include="exploits\csrf-javascript-exploit1.html" />
-    <Content Include="exploits\csrf-javascript-exploit2.html" />
-    <Content Include="exploits\xss-exploits.txt" />
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="Procfile" />
@@ -45,7 +41,6 @@
     <Folder Include="app\public\" />
     <Folder Include="app\public\css\" />
     <Folder Include="app\views" />
-    <Folder Include="exploits\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
