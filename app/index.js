@@ -67,4 +67,4 @@ app.get('/vote-search', controller.voteSearch);
 app.get('/vote-search-safe', controller.voteSearchSafe);
 
 app.listen(process.env.PORT, process.env.IP);
-console.log('csrf-demo running...');
+console.log('App-Sec demo running...');
