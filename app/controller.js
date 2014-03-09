@@ -122,7 +122,7 @@ var searchVotes = function(req, res, viewName) {
         stream.on('data', function (line) {
             var fields = line.toString().split('\t');
         
-            if (username.toLowerCase() == fields[1].toLowerCase()) {
+            if (fields[1].toLowerCase().indexOf(username.toLowerCase()) != -1) {
                 var vote = {
                     date: fields[0],
                     username: fields[1],
